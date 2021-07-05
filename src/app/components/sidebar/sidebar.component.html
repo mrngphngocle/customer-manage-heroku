@@ -1,0 +1,202 @@
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary" style="cursor: unset;">
+
+            </button>
+        </div>
+        <div class="p-4">
+            <h1><a href="#" class="logo">Q.Lí K.Hàng </a></h1>
+            <p (click)="seenEasterEgg2WithoutReply()" class="forU" id="forYou" data-toggle="modal" data-target="#easterEgg2">for
+                N.T.N.Hân </p>
+            <img (click)="seenEasterEgg1WithoutReply()" id="avatar" style="border-radius: 50%; width: 100%;"
+                src="https://firebasestorage.googleapis.com/v0/b/customermanage-9d130.appspot.com/o/uploads%2Fassets%2Fmy4everLove.jpeg?alt=media&token=d0ddd966-3418-434b-9f2b-e4fc9ff0cbe3"
+                alt="Avatar" data-toggle="modal" data-target="#staticBackdrop1">
+            <ul class="list-unstyled components mb-5">
+                <li>
+                    <a class="active-sidebar list-sidebar" routerLink="add"><span><i class="fas fa-user-plus"
+                                style="color: white;"></i></span> Thêm khách hàng mới </a>
+                </li>
+                <li>
+                    <a class="list-sidebar" routerLink="search"><span><i class="fas fa-search"
+                                style="color: white;"></i></span> Tìm kiếm khách hàng </a>
+                </li>
+                <li>
+                    <a class="list-sidebar" routerLink="list"><span><i class="fas fa-list-ul"
+                                style="color: white;"></i></span> Danh sách khách hàng</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Easter Egg 1</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                Hi em! <br /> Nếu em đọc được những dòng này thì em đang phát hiện ra 1 trong những bí mật nho nhỏ anh
+                cất nó trong cái web này òy đó!!!
+                <br />
+                Được giúp gì đó cho em là niềm vui của anh. Như hôm trước anh có nói rồi đó, giúp em đến gì còn được, xá
+                gì cái chương trình nho nhỏ này hi.
+                Thế nên khi em sử dụng nó có bất cứ vấn đề gì xảy ra, hay em muốn nó có thêm chức năng gì để phục vụ cho
+                nhu cầu của em, hãy cứ nói với anh đừng ngần ngại gì cả nhé. Anh sẽ cố hết sức có thể để hoàn thiện nó
+                cho em! Nha nhớ là đừng ngại gì hết đó không có phiền gì anh đâu!
+                <br />
+                Anh, N.P.N.Lễ
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="seenEasterEgg1()">ĐÓNG</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="easterEgg2" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Easter Egg 2</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Hi em! <br /> Nếu em đọc được những dòng này thì em đang phát hiện ra 1 bí mật lớn trong những bí mật
+                nho nhỏ anh
+                cất nó trong cái web này òy đó!!!
+                <br />
+                <!-- <form> -->
+
+                <div class="form-group">
+                    <label for="pasword" style="font-weight: bold;">NHẬP MẬT KHẨU (8 chữ số)</label>
+                    <input style="border: 1px solid black;" type="password" class="form-control" id="password"
+                        placeholder="Nhập PASS gồm 8 chữ số" #password>
+                </div>
+                <button id="btnCheck" type="button" class="btn btn-info" (click)="checkPassword()">Check</button>
+
+                <!-- </form> -->
+                <br />
+                <strong>*Gợi ý</strong>
+                <br />
+                -----------------------
+                <br />
+                Cười lên đi nào, cô gái nhỏ xinh xinh <br />
+                Em không hề cô đơn như em nghĩ <br />
+                Hãy lắng nghe phố ngoài kia thủ thỉ <br />
+                Chúc mừng ngày thiên thần xuống nhân gian <br /><br />
+                Xin hãy nhớ là em vẫn có tôi đây <br />
+                Luôn luôn quan tâm luôn luôn chia sẻ <br />
+                Cũng có lúc cuộc đời này buồn tẻ <br />
+                Nhưng hạnh phúc vẫn từng ngày khe khẽ gọi tên em
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ĐÓNG</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confess" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">With Love </h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                Hi em! <br /> Khi em đọc được đến những dòng này thì có lẽ duyên của anh và em vẫn còn, thế nên mới
+                bằng một cách tình cờ nào đó đã đưa được em đến đây! Đã vậy, xin em hãy dành một ít thời gian cho những
+                gì anh sắp nói ra sau đây, nhé!
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;Trước tiên, một lần nữa cho anh được xin lỗi em, về tất cả những gì không hay đã
+                xảy ra trong suốt ngần
+                ấy năm anh xuất hiện trong cuộc đời của em, chỉ một lần này nữa thôi. Gặp được và quen biết em là một
+                điều may mắn trong cuộc đời
+                của anh. Nhờ có em, những năm tháng thanh xuân của anh đã thêm rực rỡ. Nhờ có em, anh đã vượt qua được
+                những ngày tháng khó khăn nhất, bất lực nhất ở Đại Học. Rằng chí ít ra, vẫn có một người không quay lưng
+                bỏ rơi anh, còn có một người để anh làm chỗ dựa, và là động lực để vượt qua tất cả. Phải, người đó là em
+                chứ không phải là một ai khác...
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;Đúng như lời em từng nói, suốt 5 năm qua chúng ta cũng chỉ gặp và trò chuyện với
+                nhau qua 2 chiếc màn
+                hình không hơn không kém. Điều đó làm anh rất tiếc, thực sự rất rất tiếc. Anh không muốn giải thích hay
+                nói thêm điều gì cả bởi có nói thêm trăm ngàn lần nữa thì cũng không thay đổi được quá khứ. Chỉ có một
+                điều thật tâm là mỗi khi có cơ hội, anh đều muốn đến gặp em, nhưng rồi vì nhiều lí do cả chủ quan lẫn
+                khách quan mà lần lượt từng cơ hội cứ trôi tuột qua kẽ tay anh như vậy. Anh không hề nghĩ rằng, thời
+                gian cũng đủ dài như vậy mà vẫn chưa thể gặp lại em. Chắc đành đổ lỗi cho ý trời vậy...
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;Ngần ấy thời gian trôi qua, ty tỷ thứ đã xảy ra, chúng mình cũng đã nói với nhau
+                vô số chuyện. Có những
+                chuyện em không nói với anh, và dĩ nhiên cũng có những chuyện anh không nói với em, hay chính xác hơn là
+                không dám nói. Hôm nay sẽ là một trong số những điều đó. Hai ta cũng không còn là những cô cậu học trò
+                16, 17 tuổi lúc mới gặp lại nhau nữa, theo thời gian rồi ai cũng phải lớn. Và trong anh cũng có một thứ
+                đang lớn dần. Đó là thứ khiến anh vui khi biết em đang vui, khiến anh buồn khi biết em buồn, khiến anh
+                lo lắng trăn trở khi biết sức khỏe em không tốt hay đang gặp phải một rắc rối nào đó, khiến anh cố gắng
+                nhiều hơn cho tương lai, khiến anh sợ toát mồ hôi khi mơ thấy em đi lấy chồng, và khiến anh đau xé lòng
+                khi thấy em đang hạnh phúc trong vòng tay người khác. Phải, đó là tình yêu mà anh đã dành cho em. Nhưng
+                lúc đó anh đã thực lòng chúc phúc cho em, chỉ là anh không có đủ can đảm để nhìn em hạnh phúc bên người
+                khác. Cho dù đó chỉ là bạn trai của em thôi, mọi thứ chưa có gì là chắc chắn. Nhưng với những gì anh đã
+                biết về một cô gái như em, và về những gì về người đó mà em đã nói với anh, anh đã luôn tin rằng 2 người
+                sẽ thật là bền chặt. Chỉ là anh thực sự không ngờ, em và cậu ta lại break theo một cách như vậy... Thú
+                thật với em, anh như được kéo từ dưới hố sâu tuyệt vọng lên vậy. Hóa ra anh vẫn còn cơ hội, nhưng anh
+                trước giờ lại không phải một kẻ thích thừa nước đục thả câu như vậy. Anh nghĩ khi một ai vừa kết thúc
+                một mối quan hệ, tâm trạng cũng ít nhiều bị xáo trộn và trống trải. Anh sẽ không lợi dụng điều đó để dễ
+                dang làm người thay thế, vả lại bây giờ cũng chưa phải lúc. Với lại có lần tình cờ anh thấy được 2 người
+                trò chuyện qua lại với nhau trên fb, trông chẳng giống gì 2 người vừa ct nhau. Có thể là 2 người giờ là
+                bạn tốt của nhau (thật là văn minh), cũng có thể 2 người đã gương vỡ lại lành!
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;Nói nhiều như vậy, đến cuối cùng anh chỉ xin em một điều này, dù anh biết anh
+                chẳng có đủ tư cách cũng như quyền hạn gì để nói điều này cả... Nhưng nếu mà em thật sự đã quay lại với
+                cậu ta, thì qua lần này anh nghĩ 2 người đã hiểu nhau hơn và sẽ tiến xa hơn trong mối quan hệ này. Còn
+                anh thực tâm chúc em sẽ luôn hạnh phúc tràn đầy, và xin em hãy bỏ qua những gì anh sắp nói bên dưới
+                đây... Hân, nếu em và cậu ta đã thật sự kết thúc, và nếu em vẫn còn dành chút tình cảm nào đó cho anh,
+                thì em có thể nào đợi anh một thời gian ngắn được không? Anh biết sẽ thật bất công cho em khi bắt em
+                cứ phải chờ đợi như vậy, nhưng bây giờ anh chưa có gì trong tay cả, mọi thứ vẫn chưa đâu vào đâu, anh
+                cũng còn nhiều chuyện phải giải quyết. Anh không muốn bạn gái của mình bị ảnh hưởng vì anh, cô ấy chỉ
+                cần yêu anh và được anh yêu, thế là đủ rồi. Anh muốn cho người mình yêu những gì chắc chắn nhất, tốt đẹp
+                nhất. Hy vọng à không nhất định một thời gian ngắn nữa thôi, khi mọi chuyện đã ổn thỏa, khi duyên của
+                anh và em vẫn đủ, anh sẽ tìm đến gặp em, với một anh chí ít là thật sự ổn, và dành hết lòng mình cho em.
+                Anh nhớ
+                có lần em từng nói, rằng sau này cho dù thế nào cũng sẽ không chủ động nữa. Đúng vậy, ai lại để cho em
+                chủ động mãi như vậy,
+                lần này là anh chủ động, 100%! Em... có đồng ý không? Nếu có thì hãy ấn YES nhé (cũng chỉ là tượng trưng
+                thôi nhưng biết đâu anh sẽ cảm nhận được)
+                <br />
+                Còn nếu em không chấp nhận chờ đợi anh nữa, hay nói đúng hơn là không muốn tiến xa hơn với anh mà dừng
+                lại ở mức như bây giờ mãi mãi, thì cũng đừng ngần ngại mà cho anh biết nhé, vẫn có nút NO ở dưới đấy! Mình
+                vẫn sẽ là anh em tốt, anh vẫn luôn bên cạnh em, vẫn luôn sẵn sàng giúp đỡ em bất cứ điều gì một cách vô điều kiện.
+                Em sẽ không bao giờ một mình đâu bởi vì cho dù cả thế giới có quay lưng lại với em, anh vẫn luôn hướng về em.
+                <br />
+                Cuộc sống này là vô thường, không ai biết trước được ngày mai rồi sẽ ra sao. Vậy nên khi còn có cơ hội để
+                nói, ngay tại giây phút này, anh khẳng định: Hân, anh yêu em . . .
+                <br />
+                Anh, N.P.N.Lễ
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="seenEasterEgg2Yes()">YES</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="seenEasterEgg2No()">NO</button>
+            </div>
+        </div>
+    </div>
+</div>

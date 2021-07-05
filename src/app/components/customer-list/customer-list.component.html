@@ -1,0 +1,110 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-loader" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<h3>DANH SÁCH KHÁCH HÀNG</h3>
+<br />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Mã KH</th>
+            <th scope="col">Họ tên</th>
+            <th scope="col">Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let customer of listCustomer | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ customer.makh }}</td>
+            <td>{{ customer.name }}</td>
+            <td>
+                <button type="button" class="btn btn-info" (click)="viewDetailsOfCustomer(customer.makh)"
+                    data-toggle="modal" data-target="#staticBackdrop"> <i class="fas fa-info-circle"></i>
+                    Xem chi tiết</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+    Launch static backdrop modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">CHI TIẾT</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <h4 class="card-header">THÔNG TIN KHÁCH HÀNG </h4>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="form-group">
+                                        <label for="makh" style="font-weight: bold;"> Mã KH </label>
+                                        <input readonly type="text" class="form-control" id="makh" placeholder="Mã KH"
+                                            #makh>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fullname" style="font-weight: bold;"> Họ tên </label>
+                                        <input readonly type="text" class="form-control" id="fullname"
+                                            placeholder="Họ tên KH" #fullname>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone" style="font-weight: bold;"> Số điện thoại </label>
+                                        <input readonly type="text" class="form-control" id="phone"
+                                            placeholder="Số điện thoại KH" #phone>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlFile12" style="font-weight: bold;">Khác</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div *ngFor="let file of othersFileOfCustomer" class="form-group">
+                                            <div class="row" style="padding-left: 20px;">
+                                                <!-- <div class="col-md-7" style="border-bottom: solid 1px black;">
+                                                    {{ file.tenfile }}
+                                                </div> -->
+                                                <a [href]="file.file.url" target="_blank" class="col-md-9"
+                                                    style="border-bottom: solid 1px black;">{{
+                                                    file.tenfile }}</a>
+                                                <div class="col-md-3">
+                                                    <button style="display: none;" type="button" class="btn btn-danger"><i
+                                                            class="far fa-trash-alt"
+                                                            style="margin-right: 5px;"></i>Xóa</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="col-7">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlFile1" style="font-weight: bold;">Hợp đồng</label>
+                                        <embed *ngIf="fileUrl != ''" [src]="fileUrl | safe" width="100%" height="700">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

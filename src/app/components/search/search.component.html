@@ -1,0 +1,158 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-loader" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="card">
+    <h4 class="card-header">TÌM KIẾM & QUẢN LÍ KHÁCH HÀNG </h4>
+    <div class="card-body">
+        <div id="alertLocation">
+
+        </div>
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="searchmakh" style="font-weight: bold;">Mã KH muốn tìm</label>
+                        <input type="text" class="form-control" id="searchmakh" placeholder="Nhập Mã KH muốn tìm"
+                            #searchmakh>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label style="font-weight: bold; color: white;">.</label>
+                        <button type="button" class="btn btn-success form-control" (click)="searchCustomer()"><i
+                                class="fas fa-search" style="color: white;"></i> Tìm</button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label style="font-weight: bold; color: white;">.</label>
+                        <button [disabled]="!isHaveCustomer ? true : null" type="button"
+                            class="btn btn-info form-control"
+                            (click)="!isEditing ? onEditCustomer() : endEditCustomer()"><i *ngIf="!isEditing"
+                                class="fas fa-user-edit" style="margin-right: 5px;"></i><i *ngIf="isEditing"
+                                class="fas fa-save" style="margin-right: 5px;"></i>
+                            {{!isEditing ? "Sửa t.tin KH" : "Lưu lại"}}
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label style="font-weight: bold; color: white;">.</label>
+                        <button [disabled]="!isHaveCustomer ? true : null" type="button"
+                            class="btn btn-danger form-control" (click)="deleteCustomer()"><i class="far fa-trash-alt"
+                                style="margin-right: 5px;"></i>Xóa KH</button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="makh" style="font-weight: bold;">{{!isEditing ? "Mã KH" : "Mã KH (không thể chỉnh
+                            sửa)"}}</label>
+                        <input readonly type="text" class="form-control" id="makh" placeholder="Mã KH" #makh>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname" style="font-weight: bold;"> {{!isEditing ? "Họ tên" : "Họ tên (có thể
+                            chỉnh sửa)"}}</label>
+                        <input [readonly]="!isEditing ? true : null" type="text" class="form-control" id="fullname"
+                            placeholder="Họ tên KH" #fullname>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" style="font-weight: bold;">{{!isEditing ? "Số điện thoại" : "Số điện thoại
+                            (có thể chỉnh sửa)"}}</label>
+                        <input [readonly]="!isEditing ? true : null" type="text" class="form-control" id="phone"
+                            placeholder="Số điện thoại KH" #phone>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile12" style="font-weight: bold;">Khác</label>
+                    </div>
+                    <div class="form-group" [hidden]="!isHaveOthersFile ? true : null">
+                        <div *ngFor="let file of othersFileOfCustomer" class="form-group">
+                            <div class="row" style="padding-left: 20px;">
+                                <!-- <div class="col-md-7" style="border-bottom: solid 1px black;">
+                                    {{ file.tenfile }}
+                                </div> -->
+                                <a [href]="file.file.url" target="_blank" class="col-md-9"
+                                    style="border-bottom: solid 1px black;">{{
+                                    file.tenfile }}</a>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-danger"
+                                        (click)="deleteOtherFile(file.key, file.file.name)"><i class="far fa-trash-alt"
+                                            style="margin-right: 5px;"></i>Xóa</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="padding-left: 20px;">
+                            <label style="font-weight: bold;"> {{ messagePreUpload }}</label>
+                        </div>
+                        <div *ngIf="currentFileUpload" class="progress mt-2" style="margin: 10px 5px 10px 5px;">
+                            <div class="progress-bar progress-bar-info" role="progressbar"
+                                attr.aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"
+                                [ngStyle]="{ width: percentage + '%' }">
+                                {{ percentage }}%
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" style="margin-left: 20px; float: right;"
+                            (click)="addNewOthersFile()"><i class="fas fa-save"
+                                style="margin-right: 5px;"></i>Lưu</button>
+                        <button type="button" class="btn btn-secondary" data-toggle="modal"
+                            data-target="#otherFilesModal" style="float: right;"><i class="fas fa-file-medical"
+                                style="margin-right: 5px;"></i>Thêm file</button>
+
+                    </div>
+
+                </div>
+                <div class="col-7">
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1" style="font-weight: bold;">Hợp đồng</label>
+                        <embed *ngIf="fileUrl == ''"
+                            src="https://firebasestorage.googleapis.com/v0/b/customermanage-9d130.appspot.com/o/uploads%2Fassets%2FFB_IMG_1622467311502.jpg?alt=media&token=4b257eb8-04b8-4c4b-8e71-eb9b66922a21"
+                            width="100%" height="700">
+                        <embed *ngIf="fileUrl != ''" [src]="fileUrl | safe" width="100%" height="700">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Modal Other File -->
+<div class="modal fade" id="otherFilesModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Thêm file "Khác"</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="nameOtherFiles" style="font-weight: bold;">Tên file</label>
+                                <input type="text" class="form-control" id="nameOtherFiles" placeholder="Nhập tên file"
+                                    #tenfilekhac>
+                            </div>
+                            <div class="form-group">
+                                <label for="uploadOtherFiles" style="font-weight: bold;"> Chọn file</label>
+                                <input type="file" class="form-control-file" id="uploadOtherFiles"
+                                    (change)="selectFile($event)">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" (click)="addOtherFileToList()"
+                    data-dismiss="modal">Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>

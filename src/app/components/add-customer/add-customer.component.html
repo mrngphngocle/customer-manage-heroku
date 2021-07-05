@@ -1,0 +1,119 @@
+<div class="card">
+    <h4 class="card-header">THÊM KHÁCH HÀNG MỚI</h4>
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="makh" style="font-weight: bold;">Mã KH</label>
+                        <input type="text" class="form-control" id="makh" placeholder="Nhập Mã KH" #makh>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname" style="font-weight: bold;"> Họ tên</label>
+                        <input type="text" class="form-control" id="fullname" placeholder="Nhập Họ tên KH" #fullname>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" style="font-weight: bold;">Số điện thoại</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Nhập Số điện thoại KH" #phone>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1" style="font-weight: bold;">Hợp đồng</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                            (change)="selectMainFile($event)">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile12" style="font-weight: bold;">Khác</label>
+                    </div>
+                    <div *ngFor="let file of listOtherFile" class="form-group">
+                        <div class="row">
+                            <div class="col-md-7" style="border-bottom: solid 1px black;">
+                                {{ file.name }}
+                            </div>
+                            <div class="col-md-5">
+                                <button type="button" class="btn btn-danger"
+                                    (click)="removeFileFromOtherFileList(file)"> <i class="far fa-trash-alt"
+                                        style="margin-right: 5px;"></i> Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="currentFileUpload" class="progress mt-2">
+                        <div class="progress-bar progress-bar-info" role="progressbar"
+                            attr.aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{ width: percentage + '%' }">
+                            {{ percentage }}%
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#otherFilesModal">
+                        <i class="fas fa-file-medical" style="margin-right: 5px;"></i> Thêm file</button>
+
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div *ngIf="currentMainFileUpload" class="progress mt-2">
+                        <div class="progress-bar progress-bar-info" role="progressbar"
+                            attr.aria-valuenow="{{ mainPercentage }}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{ width: mainPercentage + '%' }">
+                            {{ mainPercentage }}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group" style="margin-top: 28px;">
+                        <button type="button" class="btn btn-primary" (click)="addNewCustomer()"> <i
+                                class="fas fa-user-plus" style="margin-right: 5px;"></i>Thêm Khách
+                            Hàng</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Modal Other File -->
+<div class="modal fade" id="otherFilesModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Thêm file "Khác"</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="nameOtherFiles" style="font-weight: bold;">Tên file</label>
+                                <input type="text" class="form-control" id="nameOtherFiles" placeholder="Nhập tên file"
+                                    #tenfilekhac>
+                            </div>
+                            <div class="form-group">
+                                <label for="uploadOtherFiles" style="font-weight: bold;"> Chọn file</label>
+                                <input type="file" class="form-control-file" id="uploadOtherFiles"
+                                    (change)="selectFile($event)">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" (click)="addOtherFileToList()"
+                    data-dismiss="modal">Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>
